@@ -21,11 +21,9 @@ var app = {
 var turno = 'X';
 
 function logicGame ( id ){
-    console.log("click en: " + id + " turno: " + turno);
     cambiarValor( id );
+    cambioTurno();
 
-    // validar linea
-    // Validar linea 0
     validarLinea(0);
     validarLinea(1);
     validarLinea(2);
@@ -34,26 +32,43 @@ function logicGame ( id ){
     validarColumna(1);
     validarColumna(2);
 
-    cambioTurno();
+    validarDiagonal(1);
+    validarDiagonal(2);
 }
 
 function validarLinea( linea ) {
     var a = document.getElementById( linea + '_0').value;
     var b = document.getElementById( linea + '_1').value;
     var c = document.getElementById( linea + '_2').value;
-    if(a == b && a == c && a != "  "){
-        // Termina el juego
-        alert("El juego termino, ganador " + turno);
-    }
+    comprobarValores(a, b, c);
 }
 
 function validarColumna( columna ) {
     var a = document.getElementById( '0_' + columna).value;
     var b = document.getElementById( '1_' + columna).value;
     var c = document.getElementById( '2_' + columna).value;
+    comprobarValores(a, b, c);
+}
+
+function validarDiagonal( diagonal ){
+    var a = "  ";
+    var b = "  ";
+    var c = "  ";
+    if(diagonal === 1){
+        a = document.getElementById( '0_0').value;
+        b = document.getElementById( '1_1').value;
+        c = document.getElementById( '2_2').value;
+    } else {
+        a = document.getElementById( '0_2').value;
+        b = document.getElementById( '1_1').value;
+        c = document.getElementById( '2_0').value;
+    }
+    comprobarValores(a, b, c);
+}
+
+function comprobarValores(a, b, c){
     if(a == b && a == c && a != "  "){
-        // Termina el juego
-        alert("El juego termino, ganador " + turno);
+        terminaJuego();
     }
 }
 
@@ -67,5 +82,24 @@ function cambioTurno(){
         turno='0';
     } else {
         turno='X';
+    }
+    document.getElementById("turno").value = turno;
+}
+
+function terminaJuego(){
+    cambioTurno();
+    alert("El juego termino, ganador " + turno);
+    var elements = document.getElementsByName("button");
+    for (var i = 0; i < elements.length; i++) {
+        elements[i].disabled = true;
+    }
+    turno = 'X';
+}
+
+function nuevoJuego(){
+    var elements = document.getElementsByName("button");
+    for (var i = 0; i < elements.length; i++) {
+        elements[i].disabled = false;
+        elements[i].value = "  ";
     }
 }

@@ -8,11 +8,39 @@
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
     <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
     <title>Triqui</title>
-
+    <link rel="stylesheet" href="css/normalize.css"/>
     <style>
+
+        @font-face{
+            font-family: 'Roboto';
+            src: url('font/Roboto.eot');
+            src: url('font/Roboto.eot?iefix') format('eot'),
+                url('font/Roboto.woff') format('woff'),
+                url('font/Roboto.ttf') format('truetype'),
+                url('font/Roboto.svg#webfont') format('svg');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        body {
+            background: #263238;
+            color: #ECEFF1;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        h1 {
+            background: #004D40;
+            padding: 0.5em;
+            margin: 0;
+        }
+
+        hr {
+            margin: 0;
+        }
 
         .container {
             text-align: center;
+            padding: 1em;
         }
         .container table {
             display: inline-block;;
@@ -23,6 +51,41 @@
         .container input[type="button"]{
             font-size: 1.5em;
             padding: 0.5em;
+        }
+
+        .text-center {
+            margin-top: 0.3em;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        .text-center input{
+            width: 2em;
+            text-align: center;
+            background: #F1F8E9;
+        }
+
+        #newgame{
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            float: right;
+            margin-right: 1em;
+            margin-top: 1em;
+            font-size: 20px;
+            font-weight: bolder;
+            color: white;
+            background-color: #FF6F00;
+            border: 0;
+            box-shadow: 2px 2px 10px #293840;
+        }
+
+        input[name="button"]{
+            border: 0;
+            width: 2.5em;
+            height: 2.5em;
+            background: #F1F8E9;
+            border-radius: 3px;
         }
 
     </style>
@@ -36,27 +99,29 @@
     <div class="container">
         <table>
             <tr>
-                <td><input id="0_0" type="button" value="  " onclick="logicGame('0_0')"></td>
-                <td><input id="0_1" type="button" value="  " onclick="logicGame('0_1')"></td>
-                <td><input id="0_2" type="button" value="  " onclick="logicGame('0_2')"></td>
+                <td><input name="button" id="0_0" type="button" value="  " onclick="logicGame('0_0')"></td>
+                <td><input name="button" id="0_1" type="button" value="  " onclick="logicGame('0_1')"></td>
+                <td><input name="button" id="0_2" type="button" value="  " onclick="logicGame('0_2')"></td>
             </tr>
             <tr>
-                <td><input id="1_0" type="button" value="  " onclick="logicGame('1_0')"></td>
-                <td><input id="1_1" type="button" value="  " onclick="logicGame('1_1')"></td>
-                <td><input id="1_2" type="button" value="  " onclick="logicGame('1_2')"></td>
+                <td><input name="button" id="1_0" type="button" value="  " onclick="logicGame('1_0')"></td>
+                <td><input name="button" id="1_1" type="button" value="  " onclick="logicGame('1_1')"></td>
+                <td><input name="button" id="1_2" type="button" value="  " onclick="logicGame('1_2')"></td>
             </tr>
             <tr>
-                <td><input id="2_0" type="button" value="  " onclick="logicGame('2_0')"></td>
-                <td><input id="2_1" type="button" value="  " onclick="logicGame('2_1')"></td>
-                <td><input id="2_2" type="button" value="  " onclick="logicGame('2_2')"></td>
+                <td><input name="button" id="2_0" type="button" value="  " onclick="logicGame('2_0')"></td>
+                <td><input name="button" id="2_1" type="button" value="  " onclick="logicGame('2_1')"></td>
+                <td><input name="button" id="2_2" type="button" value="  " onclick="logicGame('2_2')"></td>
             </tr>
         </table>
     </div>
     <hr>
-    <h3>Es el turno de: <span id="turno">X</span></h3>
-    <button id="newgame" type="button" name="button">Nuevo</button>
+    <div class="text-center">
+        <span>Es el turno de: <input type="text" id="turno" value="X"></h3>
+    </div>
+    <button id="newgame" type="button" onclick="nuevoJuego()">+</button>
 
-    <script type="text/javascript" src="cordova.js"></script>
+    <!-- <script type="text/javascript" src="cordova.js"></script> -->
     <script type="text/javascript" src="js/app.js"></script>
     <script type="text/javascript">
         app.initialize();
